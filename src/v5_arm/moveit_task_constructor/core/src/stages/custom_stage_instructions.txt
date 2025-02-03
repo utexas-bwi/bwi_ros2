@@ -1,0 +1,4 @@
+1. Duplicate grasp or place cpp and modify
+2. Duplicate grasp or place header file inside include folder
+3. Add stage to stages.h
+4. Add stage to src/stages/CMakeLists.txt

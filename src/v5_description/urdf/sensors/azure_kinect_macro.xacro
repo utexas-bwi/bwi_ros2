@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<root name="sensor_kinect" xmlns:xacro="http://ros.org/wiki/xacro">
+
+	<xacro:macro name="sensor_kinect" params=
+		"cam_px cam_py cam_pz cam_or cam_op cam_oy parent tf_prefix">
+
+		<material name="${tf_prefix}black">
+			<color rgba="0. 0. 0. 1" />
+		</material>
+		<material name="${tf_prefix}dark_grey">
+			<color rgba="0.1 0.1 0.1 1" />
+		</material>
+		<material name="${tf_prefix}grey">
+			<color rgba="0.6 0.6 0.6 1" />
+		</material>
+		<material name="${tf_prefix}white">
+			<color rgba="0.9 0.9 0.9 1" />
+		</material>
+
+		<joint name="${tf_prefix}camera_base" type="fixed">
+			<origin xyz="${cam_px} ${cam_py} ${cam_pz}" 
+				rpy="${cam_or} ${cam_op} ${cam_oy}"/>
+			<parent link="${parent}"/>
+			<child link="${tf_prefix}camera_base" />
+		</joint>
+
+		<link name="${tf_prefix}camera_base">
+			<visual>
+			<origin xyz="-0.013 0. 0." />
+			<geometry>
+			<box size="0.026 0.103 0.039" />
+			</geometry>
+			<material name="${tf_prefix}grey" />
+			</visual>
+			<collision>
+			<geometry>
+			<box size="0.026 0.103 0.039" />
+			</geometry>
+			</collision>
+		</link>
+
+		<link name="${tf_prefix}camera_body">
+			<visual>
+			<origin xyz="0. 0. 0." />
+			<geometry>
+			<box size="0.0994 0.0996 0.023" />
+			</geometry>
+			<material name="${tf_prefix}white" />
+			</visual>
+			<collision>
+			<geometry>
+			<box size="0.0994 0.0996 0.023" />
+			</geometry>
+			</collision>
+		</link>
+
+
+		<joint name="${tf_prefix}camera_body" type="fixed">
+			<parent link="${tf_prefix}camera_base" />
+			<child link="${tf_prefix}camera_body" />
+			<origin xyz="-0.0757 0. 0.008" rpy="0. 0. 0." />
+		</joint>
+
+		<link name="${tf_prefix}camera_visor">
+			<visual>
+			<origin xyz="-0.0128 0. 0." />
+			<geometry>
+			<box size="0.026 0.101 0.037" />
+			</geometry>
+			<material name="${tf_prefix}black" />
+			</visual>
+			<collision>
+			<geometry>
+			<box size="0.026 0.101 0.037" />
+			</geometry>
+			</collision>
+		</link>
+
+		<joint name="${tf_prefix}camera_visor" type="fixed">
+			<parent link="${tf_prefix}camera_base" />
+			<child link="${tf_prefix}camera_visor" />
+			<origin xyz="0. 0. 0." rpy="0. 0. 0." />
+		</joint>
+
+	</xacro:macro>
+			
+</root>

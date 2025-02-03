@@ -1,0 +1,18 @@
+import os
+from launch import LaunchDescription
+from launch.actions import IncludeLaunchDescription
+from ament_index_python.packages import get_package_share_directory
+
+def generate_launch_description():
+    #ros2 launch urdf_tutorial display.launch.py model:=urdf/01-myfirst.urdf
+
+    urdf = os.path.join(
+        get_package_share_directory('v5_description'),
+        'urdf',
+        'v5_robot.urdf.xacro'
+    )
+    urdf_tutorial = IncludeLaunchDescription(
+        os.path.join(get_package_share_directory('urdf_tutorial'), 'launch', 'display.launch.py'),
+        launch_arguments={'model': urdf}.items()
+    )
+    return LaunchDescription([urdf_tutorial])

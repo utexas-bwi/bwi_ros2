@@ -1,0 +1,50 @@
+# Find the include directory for the libsegwayrmp library
+find_path(libsegwayrmp_INCLUDE_DIRS libsegwayrmp/segwayrmp.h
+  @CMAKE_INSTALL_PREFIX@/include
+  /usr/include
+  /usr/local/include
+)
+
+# Find the libsegwayrmp library in common installation directories
+find_library(libsegwayrmp_LIBRARY libsegwayrmp
+  @CMAKE_INSTALL_PREFIX@/lib
+  @CMAKE_INSTALL_PREFIX@/lib64
+  /usr/lib
+  /usr/lib64
+  /usr/local/lib
+  /usr/local/lib64
+)
+
+set(libsegwayrmp_LIBRARIES ${libsegwayrmp_LIBRARY})
+
+# Try to find the ftd2xx library for Unix platforms (Linux/macOS)
+if(UNIX)
+  find_library(ftd2xx_LIBRARY ftd2xx
+    @CMAKE_INSTALL_PREFIX@/lib
+    @CMAKE_INSTALL_PREFIX@/lib64
+    /usr/lib
+    /usr/lib64
+    /usr/local/lib
+    /usr/local/lib64
+  )
+  list(APPEND libsegwayrmp_LIBRARIES ${ftd2xx_LIBRARY})
+
+  # On Linux, explicitly link against the dynamic loader library (dl)
+  if(NOT APPLE)
+    list(APPEND libsegwayrmp_LIBRARIES dl)
+  endif()
+endif()
+
+# Check if we found the necessary directories and libraries
+if(NOT libsegwayrmp_INCLUDE_DIRS OR NOT libsegwayrmp_LIBRARIES)
+  set(libsegwayrmp_FOUND FALSE)
+else()
+  set(libsegwayrmp_FOUND TRUE)
+endif()
+
+# Set the include directories and libraries for external use
+if(libsegwayrmp_FOUND)
+  set(libsegwayrmp_INCLUDE_DIRS ${libsegwayrmp_INCLUDE_DIRS} PARENT_SCOPE)
+  set(libsegwayrmp_LIBRARIES ${libsegwayrmp_LIBRARIES} PARENT_SCOPE)
+endif()
+

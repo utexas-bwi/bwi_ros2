@@ -1,0 +1,47 @@
+import os
+from launch import LaunchDescription
+from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription
+from launch.substitutions import LaunchConfiguration, PythonExpression
+from launch.launch_description_sources import PythonLaunchDescriptionSource
+
+def generate_launch_description():
+    # Define launch arguments
+    joint_limit_params = DeclareLaunchArgument('joint_limit_params', default_value=os.path.join('v5_description', 'config', 'ur5', 'joint_limits.yaml'))
+    kinematics_params = DeclareLaunchArgument('kinematics_params', default_value=os.path.join('v5_description', 'config', 'ur5', 'default_kinematics.yaml'))
+    physical_params = DeclareLaunchArgument('physical_params', default_value=os.path.join('v5_description', 'config', 'ur5', 'physical_parameters.yaml'))
+    visual_params = DeclareLaunchArgument('visual_params', default_value=os.path.join('v5_description', 'config', 'ur5', 'visual_parameters.yaml'))
+    transmission_hw_interface = DeclareLaunchArgument('transmission_hw_interface', default_value='hardware_interface/PositionJointInterface')
+    safety_limits = DeclareLaunchArgument('safety_limits', default_value='false', description="If True, enable the safety limits controller")
+    safety_pos_margin = DeclareLaunchArgument('safety_pos_margin', default_value='0.15', description="The lower/upper limits in the safety controller")
+    safety_k_position = DeclareLaunchArgument('safety_k_position', default_value='20', description="Used to set k position in the safety controller")
+    robot_model = DeclareLaunchArgument('robot_model', default_value='ur5')
+
+    # Include the common launch file and pass all arguments to it
+    load_ur_launch = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(os.path.join('v5_description', 'launch', 'load_ur.launch')),
+        launch_arguments={
+            'joint_limit_params': joint_limit_params,
+            'kinematics_params': kinematics_params,
+            'physical_params': physical_params,
+            'visual_params': visual_params,
+            'transmission_hw_interface': transmission_hw_interface,
+            'safety_limits': safety_limits,
+            'safety_pos_margin': safety_pos_margin,
+            'safety_k_position': safety_k_position,
+            'robot_model': robot_model
+        }.items()
+    )
+
+    return LaunchDescription([
+        joint_limit_params,
+        kinematics_params,
+        physical_params,
+        visual_params,
+        transmission_hw_interface,
+        safety_limits,
+        safety_pos_margin,
+        safety_k_position,
+        robot_model,
+        load_ur_launch
+    ])
+

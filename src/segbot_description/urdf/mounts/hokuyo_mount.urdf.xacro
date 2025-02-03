@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<root xmlns:sensor="http://playerstage.sourceforge.net/gazebo/xmlschema/#sensor"
+      xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller"
+      xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface"
+      xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <xacro:include filename="$(find segbot_description)/urdf/components/beam_8020.urdf.xacro" />
+  <xacro:include filename="$(find segbot_description)/urdf/components/standoff.urdf.xacro" />
+  <xacro:include filename="$(find segbot_description)/urdf/components/aluminium_sheet.urdf.xacro" />
+  <xacro:include filename="$(find segbot_description)/urdf/sensors/hokuyo_laser.urdf.xacro" />
+
+  <xacro:macro name="hokuyo_mount_without_beam" params="name parent *origin ros_topic update_rate min_angle max_angle lrange">
+    <xacro:aluminium_sheet name="${name}_plate" parent="${parent}" thickness="${0.125*INCH_TO_M}" length="${2.5*INCH_TO_M}" width="${4*INCH_TO_M}">
+      <xacro:insert_block name="origin" />
+    </xacro:aluminium_sheet>
+
+    <xacro:hokuyo_laser name="${name}" parent="${name}_plate" ros_topic="${ros_topic}" update_rate="${update_rate}" min_angle="${min_angle}" max_angle="${max_angle}" laser_range="${lrange}">
+      <origin xyz="0 0 ${0.125*INCH_TO_M}" rpy="0 0 0" />
+    </xacro:hokuyo_laser>
+
+  </xacro:macro>
+
+  <xacro:macro name="hokuyo_mount" params="name parent *origin length ros_topic update_rate min_angle max_angle hrange">
+
+    <xacro:beam_8020 name="${name}_sensor_beam" parent="${parent}" length="${length}">
+      <xacro:insert_block name="origin" />
+    </xacro:beam_8020>
+
+    <xacro:hokuyo_mount_without_beam name="${name}" parent="${name}_sensor_beam" ros_topic="${ros_topic}" update_rate="${update_rate}" min_angle="${min_angle}" max_angle="${max_angle}" lrange="${hrange}">
+      <origin xyz="${0.5*INCH_TO_M} ${0.75*INCH_TO_M} ${length/2}" rpy="${M_PI/2} 0 ${M_PI/2}" />
+    </xacro:hokuyo_mount_without_beam>
+
+  </xacro:macro>
+
+</root>
+
+

@@ -1,0 +1,29 @@
+<package format="3">
+  <name>convex_decomposition</name>
+  <version>0.1.12</version>
+  <description>Convex Decomposition Tool for Robot Model</description>
+
+  <maintainer email="ros-orphaned-packages@googlegroups.com">ROS Orphaned Package Maintainers</maintainer>
+  <author email="jratcliff@infiniplex.net">John W. Ratcliff</author>
+
+  <license>MIT</license>
+
+  <url type="website">http://codesuppository.blogspot.com</url>
+  <url type="bugtracker">http://kforge.ros.org/robotmodel/Trac</url>
+  <url type="repository">http://kforge.ros.org/robotmodel/convex_decomposition</url>
+
+  <!-- Build tool dependency for ROS 2 -->
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <!-- Build and execution dependencies -->
+  <depend>unzip</depend>
+
+  <!-- Testing dependency (if tests are added) -->
+  <test_depend>ament_lint_auto</test_depend>
+  <test_depend>ament_cmake_gtest</test_depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>
+

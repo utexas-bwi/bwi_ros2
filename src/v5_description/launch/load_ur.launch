@@ -1,0 +1,45 @@
+import os
+from launch import LaunchDescription
+from launch.actions import DeclareLaunchArgument, ExecuteProcess
+from launch.substitutions import LaunchConfiguration, PythonExpression
+
+def generate_launch_description():
+    # Define launch arguments
+    joint_limit_params = DeclareLaunchArgument('joint_limit_params', description='YAML file containing the joint limit values')
+    kinematics_params = DeclareLaunchArgument('kinematics_params', description="YAML file containing the robot's kinematic parameters.")
+    physical_params = DeclareLaunchArgument('physical_params', description="YAML file containing the physical parameters of the robots")
+    visual_params = DeclareLaunchArgument('visual_params', description="YAML file containing the visual model of the robots")
+    transmission_hw_interface = DeclareLaunchArgument('transmission_hw_interface', default_value='hardware_interface/PositionJointInterface')
+    safety_limits = DeclareLaunchArgument('safety_limits', default_value='false', description="If True, enable the safety limits controller")
+    safety_pos_margin = DeclareLaunchArgument('safety_pos_margin', default_value='0.15', description="The lower/upper limits in the safety controller")
+    safety_k_position = DeclareLaunchArgument('safety_k_position', default_value='20', description="Used to set k position in the safety controller")
+    robot_model = DeclareLaunchArgument('robot_model', description="")
+
+    # Define parameters for robot description
+    robot_description = ExecuteProcess(
+        cmd=[PythonExpression(['find', 'xacro']), 'xacro', PythonExpression(['find', 'v5_description']), '/urdf/ur5_robotiq85_gripper.urdf.xacro',
+             'robot_model:=', LaunchConfiguration('robot_model'),
+             'joint_limit_params:=', LaunchConfiguration('joint_limit_params'),
+             'kinematics_params:=', LaunchConfiguration('kinematics_params'),
+             'physical_params:=', LaunchConfiguration('physical_params'),
+             'visual_params:=', LaunchConfiguration('visual_params'),
+             'transmission_hw_interface:=', LaunchConfiguration('transmission_hw_interface'),
+             'safety_limits:=', LaunchConfiguration('safety_limits'),
+             'safety_pos_margin:=', LaunchConfiguration('safety_pos_margin'),
+             'safety_k_position:=', LaunchConfiguration('safety_k_position')],
+        output='screen'
+    )
+
+    return LaunchDescription([
+        joint_limit_params,
+        kinematics_params,
+        physical_params,
+        visual_params,
+        transmission_hw_interface,
+        safety_limits,
+        safety_pos_margin,
+        safety_k_position,
+        robot_model,
+        robot_description
+    ])
+

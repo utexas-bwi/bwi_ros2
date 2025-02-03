@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>segway_description</name>
+  <version>0.3.5</version>
+  <description>Stanley Innovation Segway V3 URDF descriptions</description>
+  <maintainer email="rmp@stanleyinnovation.com">Patrick Hussey</maintainer>
+
+  <license>BSD</license>
+
+  <url type="website">http://ros.org/wiki/segway_rmp_v3</url>
+
+  <!-- Build dependencies -->
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <!-- Runtime dependencies -->
+  <exec_depend>gazebo_plugins</exec_depend>
+  <exec_depend>gazebo_ros</exec_depend>
+  <exec_depend>gazebo_ros2_control</exec_depend> <!-- ROS 2 version of gazebo_ros_control -->
+  <!-- <exec_depend>hector_gazebo_plugins</exec_depend> -->
+  <exec_depend>joint_state_publisher</exec_depend>
+  <exec_depend>robot_state_publisher</exec_depend>
+  <exec_depend>urdf</exec_depend>
+  <exec_depend>xacro</exec_depend>
+
+  <!-- Testing dependencies -->
+  <test_depend>ament_lint_auto</test_depend>
+  <!-- <test_depend>ament_cmake_gtest</test_depend> -->
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>
+

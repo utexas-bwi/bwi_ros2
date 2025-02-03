@@ -1,0 +1,33 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "${default}",
+        "limitSymbolsToIncludedHeaders": false
+      },
+      "includePath": [
+        "/home/carson/v5_workspace/install/segway_msgs/include/**",
+        "/home/carson/v5_workspace/install/moveit_task_constructor_visualization/include/**",
+        "/home/carson/v5_workspace/install/moveit_task_constructor_demo/include/**",
+        "/home/carson/v5_workspace/install/moveit_task_constructor_core/include/**",
+        "/home/carson/v5_workspace/install/rviz_marker_tools/include/**",
+        "/home/carson/v5_workspace/install/moveit_task_constructor_msgs/include/**",
+        "/opt/ros/humble/include/**",
+        "/home/carson/v5_workspace/src/Azure_Kinect_ROS2_Driver/include/**",
+        "/home/carson/v5_workspace/src/april_tag_ros2/include/**",
+        "/home/carson/v5_workspace/src/urg_node2/include/**",
+        "/home/carson/v5_workspace/src/v5_arm/moveit_task_constructor/core/include/**",
+        "/home/carson/v5_workspace/src/v5_arm/moveit_task_constructor/demo/include/**",
+        "/home/carson/v5_workspace/src/v5_arm/moveit_task_constructor/rviz_marker_tools/include/**",
+        "include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS",
+      "intelliSenseMode": "gcc-x64",
+      "compilerPath": "/usr/bin/gcc",
+      "cStandard": "gnu11",
+      "cppStandard": "c++14"
+    }
+  ],
+  "version": 4
+}

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+
+<robot name="segbot"
+       xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <!-- Included URDF Files -->
+  <xacro:include filename="$(find segbot_description)/urdf/v1/common.urdf.xacro" />
+  <xacro:include filename="$(find segbot_description)/gazebo/segbot.gazebo.xacro" />
+  <xacro:include filename="$(find segbot_description)/urdf/segbot_base.urdf.xacro" />
+  <xacro:include filename="$(find segbot_description)/urdf/v1/segbot_chassis.urdf.xacro" />
+
+  <!-- Add the segbot base -->
+  <xacro:segbot />
+  <xacro:segbot_chassis parent="base">
+    <origin xyz="${BASE_PLATE_X_OFFSET*INCH_TO_M} 0 ${BASE_PLATE_Z_OFFSET*INCH_TO_M}"/>
+  </xacro:segbot_chassis>
+
+</robot>

@@ -1,0 +1,6 @@
+string object_label
+string surface_label
+string camera
+---
+bool success
+string error_message
