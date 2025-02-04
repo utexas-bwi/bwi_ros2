@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<robot name="v5_robot" xmlns:xacro="http://wiki.ros.org/xacro">
+
+    <xacro:include filename="$(find v5_description)/urdf/v5_robot_macro.xacro" />
+    <xacro:v5_robot/>
+    
+</robot>

@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<root xmlns:sensor="http://playerstage.sourceforge.net/gazebo/xmlschema/#sensor"
+      xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller"
+      xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface"
+      xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <xacro:macro name="beam_8020" params="name parent length *origin">
+
+    <joint name="${name}_joint" type="fixed">
+      <xacro:insert_block name="origin" />
+      <parent link="${parent}_link"/>
+      <child link="${name}_link"/>
+    </joint>
+
+    <link name="${name}_link">
+      <inertial>
+        <mass value="0.1" />
+        <inertia ixx="0.01"  ixy="0.0"  ixz="0.0"
+                 iyy="0.01"  iyz="0.0"
+                 izz="0.01" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 ${length/2}" rpy="0 0 0"/>
+        <geometry>
+          <box size="${1*INCH_TO_M} ${1*INCH_TO_M} ${length}" />
+        </geometry>
+        <material name="light_grey" />
+      </visual>
+      <xacro:beam_8020_collision length="${length}" />
+    </link>
+
+    <gazebo reference="${name}_link">
+      <material>Gazebo/Grey</material>
+      <mu1 value="100.0" />
+      <mu2 value="100.0" />
+      <kp value="1000000.0" />
+      <kd value="1.0" />
+    </gazebo>
+
+  </xacro:macro>
+
+</root>
+
+

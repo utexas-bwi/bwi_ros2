@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<robot name="ur5_with_gripper" xmlns:xacro="http://wiki.ros.org/xacro">
+
+  <!-- Define the macro -->
+  <xacro:macro name="ur5_with_gripper" params="prefix parent">
+
+    <xacro:include filename="$(find ur_description)/urdf/ur_macro.xacro"/>
+    <xacro:include filename="$(find robotiq_description)/urdf/robotiq_arg2f_140_model_macro.xacro" /> 
+
+    <!-- ur5 -->
+    <!-- The ur5 xacro must be included with passing parameters -->
+    <!-- V5 robot uses base_footprint as world -->
+
+    <xacro:property name="ur_type" value="ur5"/>
+
+    <!-- arm -->
+    <xacro:ur_robot
+      name="ur"
+      tf_prefix="${prefix}"
+      parent="${parent}"
+      joint_limits_parameters_file="$(find v5_description)/config/${ur_type}/joint_limits.yaml"
+      kinematics_parameters_file="$(find v5_description)/config/${ur_type}/default_kinematics.yaml"
+      physical_parameters_file="$(find v5_description)/config/${ur_type}/physical_parameters.yaml"
+      visual_parameters_file="$(find v5_description)/config/${ur_type}/visual_parameters.yaml"
+      safety_limits="false"
+      safety_pos_margin="0.15"
+      safety_k_position="20"
+    >
+      <origin xyz="0 0 0" rpy="0 0 0" />
+    </xacro:ur_robot>
+
+    <!-- Robotiq Coupler -->
+    <!--  + Height added by the coupler: 8mm -->
+    <!--  + Reference frame: at the middle (4mm) -->
+
+    <material name="coupler_black">
+      <color rgba="0.1 0.1 0.1 1"/>
+    </material>
+
+    <link name="robotiq_coupler">
+      <visual>
+        <geometry>
+          <mesh filename="package://robotiq_description/meshes/visual/robotiq_arg2f_coupling.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="coupler_black"/>
+      </visual>
+      <collision>
+        <geometry>
+          <mesh filename="package://robotiq_description/meshes/collision/robotiq_arg2f_coupling.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <origin xyz="2.073e-05   1.45286e-03  -1.1049e-03" rpy="0 0 0" />
+        <mass value="0.168" />
+        <inertia ixx="6.69695624e-05" ixy="5.21511788e-09" ixz="-2.74383009e-08" 
+                iyy="7.85088161e-05" iyz="5.41105193e-07" izz="1.41819717e-04"/>
+      </inertial>
+    </link>
+
+    <joint name="robotiq_coupler_joint" type="fixed">
+      <origin xyz="0 0 0.004" rpy="0 0 -1.57079632679"/>
+      <parent link="ur5_tool0"/>
+      <child link="robotiq_coupler"/>
+    </joint>
+    
+    <!-- Attach the robotiq 85 gripper -->
+    <xacro:robotiq_arg2f_140 prefix="" parent="robotiq_coupler"/>
+
+  </xacro:macro>
+
+</robot>

@@ -1,0 +1,4 @@
+sensor_msgs/Image depth_image
+std_msgs/String frame_id
+---
+string object_name

@@ -1,0 +1,41 @@
+import os
+from launch import LaunchDescription
+from launch.actions import IncludeLaunchDescription
+from launch.launch_description_sources import PythonLaunchDescriptionSource
+from launch_ros.actions import Node
+
+def generate_launch_description():
+    # Include the common launch file
+    load_ur5_launch = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(os.path.join('v5_description', 'launch', 'load_ur5.launch'))
+    )
+
+    # Define nodes
+    joint_state_publisher_gui_node = Node(
+        package='joint_state_publisher_gui',
+        executable='joint_state_publisher_gui',
+        name='joint_state_publisher_gui'
+    )
+
+    robot_state_publisher_node = Node(
+        package='robot_state_publisher',
+        executable='robot_state_publisher',
+        name='robot_state_publisher'
+    )
+
+    rviz_node = Node(
+        package='rviz',
+        executable='rviz',
+        name='rviz',
+        arguments=['-d', os.path.join('v5_description', 'cfg', 'view_robot.rviz')],
+        output='screen',
+        parameters=[{}]
+    )
+
+    return LaunchDescription([
+        load_ur5_launch,
+        joint_state_publisher_gui_node,
+        robot_state_publisher_node,
+        rviz_node
+    ])
+

@@ -1,0 +1,10 @@
+moveit_setup_assistant_config:
+  urdf:
+    package: v5_description
+    relative_path: urdf/v5_with_arm.urdf.xacro
+  srdf:
+    relative_path: config/v5_with_arm.srdf
+  package_settings:
+    author_name: Carson Stark
+    author_email: carsonstark@ymail.com
+    generated_timestamp: 1733538082

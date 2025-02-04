@@ -1,0 +1,23 @@
+{
+	"folders":
+	[
+		{
+			"path": "."
+		},
+		{
+			"path": "../serial"
+		}
+	],
+	"settings":
+	{
+		"sublimeclang_options":
+		[
+			"-I/usr/include",
+			"-I/usr/local/include",
+			"-I${folder:${project_path:segway.sublime-project}}/include",
+			"-I${folder:${project_path:segway.sublime-project}}/ftd2xx/include",
+			"-DLIBSEGWAYRMP_USE_SERIAL",
+			"-I/Users/william/devel/serial/include"
+		]
+	}
+}

@@ -1,0 +1,122 @@
+<?xml version="1.0"?>
+<robot name="v5_robot" xmlns:xacro="http://wiki.ros.org/xacro">
+
+    <xacro:macro name="v5_robot">
+
+      <xacro:property name="model_height" value="1.195"/>
+      <xacro:property name="model_length" value="0.6"/>
+      <xacro:property name="model_width" value="0.36"/>
+      <xacro:property name="scale" value="0.001"/>
+
+      <link name="base_link" >
+        <visual>
+          <origin xyz="0 0 0" rpy="0.0 0.0 0.0"/>
+          <geometry>
+            <mesh filename="package://v5_description/meshes/BWIv5.stl" scale="${scale} ${scale} ${scale}" />
+          </geometry>
+          <material name="LightGrey">
+            <color rgba="0.7 0.7 0.7 1.0"/>
+          </material>
+        </visual>
+        <collision>
+          <origin xyz="0 0 0" rpy="0.0 0.0 0.0"/>
+          <geometry>
+            <mesh filename="package://v5_description/meshes/BWIv5.stl" scale="${scale} ${scale} ${scale}" />
+          </geometry>
+        </collision>
+      </link>
+      
+      <joint name="laser_joint" type="fixed">
+        <origin xyz="0.3 0 0.04" rpy="3.14159 0.0 0.0"/>
+        <parent link="base_link"/>
+        <child link="laser"/>
+      </joint>
+      
+      <material name="black">
+      <color rgba="0. 0. 0. 1" />
+      </material>
+      
+      <link name="laser" >
+        <visual>
+          <geometry>
+      <box size="0.05 0.05 0.05" />
+          </geometry>
+          <material name="black"/>
+        </visual>
+      </link>
+
+      <joint name="velodyne_joint" type="fixed">
+        <origin xyz="-0.3 0 1.11" rpy="3.14159 0.0 0.0"/>
+        <parent link="base_link"/>
+        <child link="velodyne"/>
+      </joint>
+
+      <link name="velodyne" >
+        <visual>
+          <geometry>
+          <box size="0.1 0.1 0.1" />
+          </geometry>
+          <material name="black"/>
+        </visual>
+      </link>
+
+      <link name="arm_base">
+      <visual>
+        <geometry>
+          <mesh filename="package://v5_description/meshes/ur5/visual/base.dae" />
+        </geometry>
+        <material name="LightGrey">
+          <color rgba="0.7 0.7 0.7 1.0"/>
+        </material>
+      </visual>
+      <collision>
+        <geometry>
+          <mesh filename="package://v5_description/meshes/ur5/collision/base.stl" />
+        </geometry>
+      </collision>
+      </link>
+
+      <joint name="arm_joint" type="fixed">
+        <origin xyz="0.214606 -0.05 0.442037" rpy="0.0 0.5 0.0"/>
+        <parent link="base_link"/>
+        <child link="arm_base"/>
+      </joint>
+
+      <link name="shoulder_base"/>
+      <joint name="shoulder_base_joint" type="fixed">
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 -0.7854"/>
+        <parent link="arm_base"/>
+        <child link="shoulder_base"/>
+      </joint>
+
+      <link name="base_footprint" />
+      <joint name="base_joint" type="fixed">
+        <parent link="base_footprint" />
+        <child link="base_link" />
+        <origin xyz="0.0 0.0 0.23" rpy="0.0 0.0 0.0" />
+      </joint>
+
+      <!-- 
+      Translation and rotation of camera from its base link
+      Moves the camera model as well as its simulated vision
+    -->
+      <xacro:property name="cam_px" value="-0.215" />
+      <xacro:property name="cam_py" value="0" />
+      <xacro:property name="cam_pz" value="1.20" />
+      <xacro:property name="cam_or" value="0" />
+      <xacro:property name="cam_op" value="0" />
+      <xacro:property name="cam_oy" value="0" />
+
+      <xacro:include filename="$(find v5_description)/urdf/sensors/azure_kinect_macro.xacro" />
+      <xacro:sensor_kinect parent="base_link" tf_prefix="high_" cam_px="${cam_px}"
+        cam_py="${cam_py}" cam_pz="${cam_pz}" cam_or="${cam_or}" 
+          cam_op="${cam_op}" cam_oy="${cam_oy}"/>
+
+      <xacro:include filename="$(find v5_description)/urdf/sensors/azure_kinect_macro.xacro" />
+      <xacro:sensor_kinect parent="base_link" tf_prefix="low_" cam_px="0.30"
+        cam_py="0.1" cam_pz="0.36" cam_or="${cam_or}" 
+          cam_op="${cam_op}" cam_oy="${cam_oy}"/>
+
+    </xacro:macro>
+    
+</robot>

@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<robot name="v5_with_arm" xmlns:xacro="http://wiki.ros.org/xacro">
+  
+  <xacro:include filename="$(find v5_description)/urdf/ur5_with_gripper_macro.xacro" /> 
+  <xacro:include filename="$(find v5_description)/urdf/v5_robot_macro.xacro" />
+
+  <!-- ur5 with gripper attached to arm_base -->
+  <xacro:ur5_with_gripper prefix="ur5_" parent="shoulder_base"/>
+
+  <!-- v5 robot chassis and sensors -->
+  <xacro:v5_robot/>
+    
+</robot>

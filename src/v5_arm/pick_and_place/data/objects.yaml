@@ -1,0 +1,44 @@
+Coffee Table:
+  frame: tag4
+  size:
+    y: 0.55
+    z: 0.45
+    x: 0.9
+  offset:
+    y: 0.10
+    z: -0.4
+    x: 0
+  y_up: False
+Console Table:
+  frame: tag2
+  size:
+    y: 0.26
+    z: 0.45
+    x: 0.9
+  offset:
+    y: -0.0
+    z: -0.25
+    x: 0.05
+  y_up: True
+End Table:
+  frame: tag0
+  size:
+    y: 0.56
+    z: 0.50
+    x: 0.56
+  offset:
+    y: 0.16
+    z: -0.23
+    x: 0.16
+  y_up: False
+Kitchen Island:
+  frame: tag5
+  size:
+    y: 0.5
+    z: 0.90
+    x: 0.9
+  offset:
+    y: -0.4
+    z: -0.2
+    x: 0.0
+  y_up: True

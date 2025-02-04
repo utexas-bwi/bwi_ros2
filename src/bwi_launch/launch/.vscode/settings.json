@@ -1,0 +1,20 @@
+{
+    "python.autoComplete.extraPaths": [
+        "/home/carson/v5_workspace/install/segway_msgs/local/lib/python3.10/dist-packages",
+        "/home/carson/v5_workspace/install/segway/lib/python3.10/site-packages",
+        "/home/carson/v5_workspace/install/scan_filter/lib/python3.10/site-packages",
+        "/home/carson/v5_workspace/install/robotiq_gripper_driver/lib/python3.10/site-packages",
+        "/home/carson/v5_workspace/install/moveit_task_constructor_msgs/local/lib/python3.10/dist-packages",
+        "/opt/ros/humble/lib/python3.10/site-packages",
+        "/opt/ros/humble/local/lib/python3.10/dist-packages"
+    ],
+    "python.analysis.extraPaths": [
+        "/home/carson/v5_workspace/install/segway_msgs/local/lib/python3.10/dist-packages",
+        "/home/carson/v5_workspace/install/segway/lib/python3.10/site-packages",
+        "/home/carson/v5_workspace/install/scan_filter/lib/python3.10/site-packages",
+        "/home/carson/v5_workspace/install/robotiq_gripper_driver/lib/python3.10/site-packages",
+        "/home/carson/v5_workspace/install/moveit_task_constructor_msgs/local/lib/python3.10/dist-packages",
+        "/opt/ros/humble/lib/python3.10/site-packages",
+        "/opt/ros/humble/local/lib/python3.10/dist-packages"
+    ]
+}

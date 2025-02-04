@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<robot name="ur5_with_gripper" xmlns:xacro="http://wiki.ros.org/xacro">
+
+  <xacro:property name="prefix" value=""/>
+  <xacro:property name="parent" value="world"/>
+
+  <link name="world"/>
+
+  <xacro:include filename="$(find v5_description)/urdf/ur5_with_gripper_macro.xacro" />
+  <xacro:ur5_with_gripper prefix="${prefix}" parent="${parent}"/>
+
+</robot>

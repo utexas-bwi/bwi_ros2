@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>libsegwayrmp</name>
+  <version>0.2.10</version>
+  <description>
+    This is a C++ library for interfacing with Segway's RMP line of robotic platforms.
+  </description>
+
+  <maintainer email="wjwwood@gmail.com">William Woodall</maintainer>
+  <maintainer email="piyushk@gmail.com">Piyush Khandelwal</maintainer>
+
+  <license>BSD</license>
+
+  <url type="website">http://segwayrmp.github.com/libsegwayrmp/</url>
+  <url type="repository">https://github.com/segwayrmp/libsegwayrmp</url>
+  <url type="bugtracker">https://github.com/segwayrmp/libsegwayrmp/issues</url>
+
+  <author email="wjwwood@gmail.com">William Woodall</author>
+
+  <!-- Use a build type for ROS 2 -->
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <!-- Change catkin dependencies to ament dependencies -->
+  <!-- <build_depend>serial</build_depend>
+  <exec_depend>serial</exec_depend> -->
+
+
+  <build_depend>boost</build_depend>
+  <exec_depend>boost</exec_depend>
+
+  <!-- Change Qt4 dependencies to Qt5 -->
+  <build_depend>qt5-qmake</build_depend>
+  <build_depend>qtbase5-dev</build_depend>
+  <exec_depend>qtbase5-dev</exec_depend>
+
+
+  <build_depend>sdl2</build_depend>
+  <exec_depend>sdl2</exec_depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>
+
