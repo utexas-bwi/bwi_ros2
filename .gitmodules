@@ -1,0 +1,9 @@
+[submodule "src/fri_exercises"]
+	path = src/fri_exercises
+	url = https://github.com/Living-With-Robots-Lab/fri_exercises.git
+[submodule "src/map_augmentation"]
+	path = src/map_augmentation
+	url = https://github.com/Living-With-Robots-Lab/map_augmentation.git
+[submodule "src/segway_rmp_ros2"]
+	path = src/segway_rmp_ros2
+	url = https://github.com/utexas-bwi/segway_rmp_ros2.git
