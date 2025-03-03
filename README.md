@@ -1,11 +1,12 @@
 # bwi-ros2
-ROS2 workspace for building wide intelligence project, University of Texas at Austin. This workspace has all the necessary packages to run BWIBOTs V2, v4, and v5.  
+ROS2 workspace for building wide intelligence project, University of Texas at Austin. This workspace has all the necessary packages to run BWIBOTs v2, v4, and v5.  
 
 ## Requirements
 - Ubuntu 22.04 or greater
 - ROS2 humble
 - serial library for ros2
 - bwi-ros2 workspace
+- Go through the Robot startup instructions from [here](https://docs.google.com/document/d/11iZ1Vx7ReAhXJNAw5c9RzdnXDH5MWIHImsS1ARvgtaM/edit?tab=t.0) 
   
 ## Installation
 
@@ -39,5 +40,42 @@ cd ~/bwi_ros2
 rosdep install --from-paths src --ignore-src -r -y
 colcon build
 ```
+### sources the workspace
+
+<code>nano ~/.bashrc </code>
+
+Add the following line in the `.bashrc` file:
+```
+source /opt/ros/humble/setup.bash
+```
 
 ## Run
+Make sure to source the file when you open a new terminal. Example:
+```
+# from your [colcon ws]  
+source install/setup.bash</code>
+```
+**Launch segway base, sensor drivers, navigation, etc.**
+
+<code>ros2 launch bwi_launch segbot_[BWIBOT VERSION].launch.py.</code>
+
+BWIBOT VERSIONS: v2, v4, and v5.
+
+Example: <code>ros2 launch bwi_launch segbot_v2.launch.py.</code>
+
+**Teleoperation (Keyboard Control):**
+
+ros2 run teleop_twist_keyboard teleop_twist_keyboard
+
+**SLAM (Simultaneous Localization and Mapping):** 
+
+<code>ros2 launch nav2_bringup slam_launch.py</code>
+
+**Save Map:** 
+
+<code>ros2 run nav2_map_server map_saver_cli -f my_map</code>
+
+**Load Map with Navigation:**
+
+Edit the ‘map_file’ param path on segbot_v2.launch.py file:
+ map_file = "~/bwi_ros2/src/nav2_bringup/maps/2/occ/ahg_full_closed.yaml"
