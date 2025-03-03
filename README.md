@@ -40,7 +40,7 @@ cd ~/bwi_ros2
 rosdep install --from-paths src --ignore-src -r -y
 colcon build
 ```
-### sources the workspace
+### Source the workspace
 
 <code>nano ~/.bashrc </code>
 
@@ -53,7 +53,7 @@ source /opt/ros/humble/setup.bash
 Make sure to source the file when you open a new terminal. Example:
 ```
 # from your [colcon ws]  
-source install/setup.bash</code>
+source install/setup.bash
 ```
 **Launch segway base, sensor drivers, navigation, etc.**
 
