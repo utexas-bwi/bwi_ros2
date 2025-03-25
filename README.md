@@ -18,7 +18,7 @@ Follow this instructions to install serial for ros2:
 export ROS_DISTRO=humble
 echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc
 source ~/.bashrc
-cd ~/bwi-ros2
+cd ~/bwi_ros2
 export COLCON_WS=/path/to/your/colcon_ws/
 git clone https://github.com/utexas-bwi/serial_for_ros2.git
 move 'serial' out of 'serial_for_ros2' and delete 'serial_for_ros2' 
