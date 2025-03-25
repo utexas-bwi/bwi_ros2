@@ -4,7 +4,7 @@
 
   <!-- Included URDF Files -->
   <!-- <xacro:include filename="$(find-pkg-share segbot_description)/urdf/segbot_wheel.urdf.xacro" /> -->
-  <xacro:include filename="/root/projects/colcon_ws/src/segbot_description/urdf/segbot_wheel.urdf.xacro" />
+  <xacro:include filename="$(find segbot_description)/urdf/segbot_wheel.urdf.xacro" />
 
   <xacro:macro name="bigbot">
 
