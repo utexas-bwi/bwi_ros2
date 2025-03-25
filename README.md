@@ -17,6 +17,7 @@ Follow this instructions to install serial for ros2:
 cd ~/bwi-ros2
 export COLCON_WS=/path/to/your/colcon_ws/
 git clone https://github.com/utexas-bwi/serial_for_ros2.git
+rename 'serial_for_ros2' to 'serial' 
 cd ~/serial
 rm -rf build
 mkdir build
