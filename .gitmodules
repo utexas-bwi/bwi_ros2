@@ -1,6 +1,3 @@
-[submodule "src/fri_exercises"]
-	path = src/fri_exercises
-	url = https://github.com/Living-With-Robots-Lab/fri_exercises.git
 [submodule "src/map_augmentation"]
 	path = src/map_augmentation
 	url = https://github.com/Living-With-Robots-Lab/map_augmentation.git
