@@ -5,19 +5,23 @@ ROS2 workspace for building wide intelligence project, University of Texas at Au
 - Ubuntu 22.04 or greater
 - ROS2 humble
 - serial library for ros2
-- bwi-ros2 workspace
 - Go through the Robot startup instructions from [here](https://docs.google.com/document/d/11iZ1Vx7ReAhXJNAw5c9RzdnXDH5MWIHImsS1ARvgtaM/edit?tab=t.0) 
   
 ## Installation
 
 Install ros2 humble first from [here](https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debs.html).
 
+clone the repo:
+
 Follow this instructions to install serial for ros2:
 ```
+export ROS_DISTRO=humble
+echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc
+source ~/.bashrc
 cd ~/bwi-ros2
 export COLCON_WS=/path/to/your/colcon_ws/
 git clone https://github.com/utexas-bwi/serial_for_ros2.git
-rename 'serial_for_ros2' to 'serial' 
+move 'serial' out of 'serial_for_ros2' and delete 'serial_for_ros2' 
 cd ~/serial
 rm -rf build
 mkdir build
